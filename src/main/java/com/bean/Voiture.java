@@ -1,4 +1,4 @@
-package dao.entities;
+package com.bean;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -18,9 +18,9 @@ public class Voiture implements Serializable {
 	private String matricule;
 	
 	@ManyToOne
-	private Personne pers;
+	private Marque marque;
 	
-	@ManyToMany
+	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE},fetch=FetchType.EAGER)
 	@JoinTable(
 			name="voiture_chauffeur",
 			joinColumns = @JoinColumn(
@@ -65,4 +65,21 @@ public class Voiture implements Serializable {
 	public void setMatricule(String matricule) {
 		this.matricule = matricule;
 	}
+	
+	public Marque getMarque() {
+		return marque;
+	}
+	
+	public void setMarque(Marque marque) {
+		this.marque = marque;
+	}
+
+	public List<Chauffeur> getChauffeurs() {
+		return chauffeurs;
+	}
+
+	public void setChauffeurs(List<Chauffeur> chauffeurs) {
+		this.chauffeurs = chauffeurs;
+	}
+	
 }

@@ -1,4 +1,4 @@
-package dao.entities;
+package com.bean;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -7,27 +7,25 @@ import java.util.List;
 import javax.persistence.*;
 
 @Entity
-@Table(name="personnes")
-public class Personne implements Serializable{
+@Table(name="marques")
+public class Marque implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	private String nom;
-	private String ville;
 	
-	@OneToMany(mappedBy="pers")
+	@OneToMany(mappedBy="marque")
 	private List<Voiture> voiutres = new ArrayList<Voiture>();
 	
-	public Personne() {
+	public Marque() {
 		// Constructor
 	}
 	
-	public Personne(Long id, String nom, String ville) {
+	public Marque(Long id, String nom) {
 		super();
 		this.id = id;
 		this.nom = nom;
-		this.ville = ville;
 	}
 
 	public Long getId() {
@@ -44,14 +42,6 @@ public class Personne implements Serializable{
 
 	public void setNom(String nom) {
 		this.nom = nom;
-	}
-
-	public String getVille() {
-		return ville;
-	}
-
-	public void setVille(String ville) {
-		this.ville = ville;
 	}
 
 	public List<Voiture> getVoiutres() {

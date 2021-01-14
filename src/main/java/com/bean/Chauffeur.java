@@ -1,4 +1,4 @@
-package dao.entities;
+package com.bean;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -16,7 +16,7 @@ public class Chauffeur implements Serializable {
 	private String nom;
 	private String telephone;
 	
-	@ManyToMany(mappedBy="chauffeurs")
+	@ManyToMany(mappedBy="chauffeurs", cascade = {CascadeType.PERSIST, CascadeType.MERGE},fetch=FetchType.EAGER)
 	private List<Voiture> voitures = new ArrayList<Voiture>(); 
 	
 	public Chauffeur() {
